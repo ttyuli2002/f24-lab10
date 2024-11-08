@@ -21,11 +21,8 @@ const Quiz: React.FC = () => {
   const handleButtonClick = (): void => {
     if (state.selectedAnswer) {
       quizCore.answerQuestion(state.selectedAnswer); 
-
-      if (quizCore.hasNextQuestion()) {
-        quizCore.nextQuestion();
-        setState((prevState) => ({ ...prevState, selectedAnswer: null }));
-      }
+      quizCore.nextQuestion();
+      setState((prevState) => ({ ...prevState, selectedAnswer: null }));
     }
   };
 
