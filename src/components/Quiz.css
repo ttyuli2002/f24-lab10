@@ -1,8 +1,9 @@
-/* Task 2: 
-TODO: Enhance User Experience by adding visual highlights to selected answers.
-Hint: You can use the className attribute for highlighting. */
 .selected {
     cursor: pointer; /* Change cursor on hover for interactivity */
+    background-color: #d1e7ff; /* Light blue background for selected answer */
+    border-color: #3498db; /* Change border color to match the button */
+    font-weight: bold; /* Make selected answer bold */
+    transition: background-color 0.2s ease, border-color 0.2s ease; /* Smooth transition */
   }
   
   /* Additional styling for better user experience */
