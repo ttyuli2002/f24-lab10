@@ -1,14 +1,13 @@
 import React, { useState } from 'react'
 import './Quiz.css'
 import QuizCore from '../core/QuizCore';
-// Hint: Take advantage of the QuizQuestion interface
 
 interface QuizState {
   selectedAnswer: string | null
 }
 
 const Quiz: React.FC = () => {
-  const quizCore = new QuizCore();
+  const [quizCore] = useState(() => new QuizCore());
 
   const [state, setState] = useState<QuizState>({
     selectedAnswer: null,  // Initialize the selected answer.
@@ -20,9 +19,15 @@ const Quiz: React.FC = () => {
 
 
   const handleButtonClick = (): void => {
-    // TODO: Task3 - Implement the logic for button click ("Next Question" and "Submit").
-    // Hint: You might want to check for a function in the core logic to help with this.
-  } 
+    if (state.selectedAnswer) {
+      quizCore.answerQuestion(state.selectedAnswer); 
+
+      if (quizCore.hasNextQuestion()) {
+        quizCore.nextQuestion();
+        setState((prevState) => ({ ...prevState, selectedAnswer: null }));
+      }
+    }
+  };
 
   const { selectedAnswer } = state;
   const currentQuestion = quizCore.getCurrentQuestion();
